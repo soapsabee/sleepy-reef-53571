@@ -9,7 +9,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors())
 // index page
-
+app.get('/', function (req, res) {
+    res.send('Express is running');
+    });
 
 app.get('/api/products', db.getAllProducts);
 app.get('/api/products/:id', db.getProductByID);
