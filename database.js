@@ -106,7 +106,7 @@ function getPurchaseByID(req, res) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retrieved products id:' +
+                    message: 'Retrieved purchase id:' +
                         req.params.id
                 });
         })
@@ -171,7 +171,7 @@ function getAllUser(req, res) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retrieved ALL purchase'
+                    message: 'Retrieved ALL user'
                         
                 });
         })
@@ -187,7 +187,7 @@ function getAllUsersByID(req, res) {
                 .json({
                     status: 'success',
                     data: data,
-                    message: 'Retrieved products id:' +
+                    message: 'Retrieved user id:' +
                         req.params.id
                 });
         })
@@ -203,7 +203,7 @@ function insertUsers(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Inserted one purchase'
+                    message: 'Inserted one user'
                 });
         })
         .catch(function (error) {
@@ -218,7 +218,7 @@ function updateUsers(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Update one purchase'
+                    message: 'Update one user'
                 });
         })
         .catch(function (error) {
@@ -234,7 +234,7 @@ function deleteUsers(req, res) {
             res.status(200)
                 .json({
                     status: 'success',
-                    message: 'Deleted one purchase'
+                    message: 'Deleted one user'
                 });
         })
         .catch(function (error) {

@@ -10,21 +10,21 @@ app.use(bodyParser.urlencoded({
 app.use(cors())
 // index page
 app.get('/', function (req, res) {
-    res.send('Express is running');
+    res.send('Patiphan is running');
     });
-
+// CRUD PRODUCT
 app.get('/api/products', db.getAllProducts);
 app.get('/api/products/:id', db.getProductByID);
 app.post('/api/products', db.insertProduct);
 app.put('/api/products/:id', db.updateProduct);
 app.delete('/api/products/:id', db.deleteProduct);
-
+// CRUD PURCHASE
 app.get('/api/purchase', db.getAllPurchase);
 app.get('/api/purchase/:id', db.getPurchaseByID);
 app.post('/api/purchase', db.insertPurchase);
 app.put('/api/purchase/:id', db.updatePurchase);
 app.delete('/api/purchase/:id', db.deletePurchase);
-
+// CRUD USERS
 app.get('/api/users/', db.getAllUser);
 app.get('/api/users/:id', db.getAllUsersByID);
 app.post('/api/users', db.insertUsers);
