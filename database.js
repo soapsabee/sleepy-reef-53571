@@ -1,7 +1,6 @@
 const pgp = require('pg-promise')();
-var db = pgp('postgres://ilwsduezrrtygv:af6d80076085e051f61b79eb8e6bafb6d4d9885c1e2a073a212cfe068a3283ac@ec2-184-72-247-70.compute-1.amazonaws.com:5432/ddjqb7dp6mhbsr?ssl=true');
-// process.env.getSoap
-//postgres://ilwsduezrrtygv:af6d80076085e051f61b79eb8e6bafb6d4d9885c1e2a073a212cfe068a3283ac@ec2-184-72-247-70.compute-1.amazonaws.com:5432/ddjqb7dp6mhbsr?ssl=true
+var db = pgp(process.env.Soap055);
+
 
 function getAllProducts(req, res) {
     db.any('select * from product_table')
@@ -100,12 +99,165 @@ function getAllPurchase(req, res) {
         })
 }
 
+function getPurchaseByID(req, res) {
+    db.any(`select * from purchase where id = ${req.params.id}`)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved products id:' +
+                        req.params.id
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+function insertPurchase(req, res) {
+    db.any('insert into purchase(tag, buy_at, sale)' +
+        'values(${tag}, ${buy_at}, ${sale})',req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+function updatePurchase(req, res) {
+
+    db.none('update purchase set tag = ${tag},buy_at = ${buy_at} , sale = ${sale} where id = ' +req.params.id ,
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Update one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+
+}
+
+function deletePurchase(req, res) {
+
+    db.none('delete from product_table where id =' +req.params.id ,
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Deleted one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+
+}
+
+function getAllUser(req, res) {
+    db.any(`select * from users `)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved ALL purchase'
+                        
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+function getAllUsersByID(req, res) {
+    db.any(`select * from users where id = ${req.params.id}`)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved products id:' +
+                        req.params.id
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+function insertUsers(req, res) {
+    db.any('insert into users(email, password, create_at)' +
+        'values(${email}, ${password}, ${create_at})',req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Inserted one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+function updateUsers(req, res) {
+
+    db.none('update users set email = ${email},password = ${password} , create_at = ${create_at} where id = ' +req.params.id ,
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Update one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+
+}
+function deleteUsers(req, res) {
+
+    db.none('delete from users where id =' +req.params.id ,
+        req.body)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'Deleted one purchase'
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+
+}
 
 module.exports = {
     getAllProducts,
     getProductByID,
     insertProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getAllPurchase,
+    getPurchaseByID,
+    insertPurchase,
+    updatePurchase,
+    deletePurchase,
+    getAllUser,
+    getAllUsersByID,
+    insertUsers,
+    updateUsers,
+    deleteUsers
 
 };
