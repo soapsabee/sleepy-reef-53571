@@ -83,6 +83,24 @@ function deleteProduct(req, res) {
 
 }
 
+
+function getAllPurchase(req, res) {
+    db.any(`select * from purchase `)
+        .then(function (data) {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    data: data,
+                    message: 'Retrieved ALL purchase'
+                        
+                });
+        })
+        .catch(function (error) {
+            console.log('ERROR:', error)
+        })
+}
+
+
 module.exports = {
     getAllProducts,
     getProductByID,
