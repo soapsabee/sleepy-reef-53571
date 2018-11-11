@@ -19,7 +19,7 @@ app.post('/api/products', db.insertProduct);
 app.put('/api/products/:id', db.updateProduct);
 app.delete('/api/products/:id', db.deleteProduct);
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log('App is running on http://localhost:' + port);
 });
