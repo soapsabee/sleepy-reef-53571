@@ -1,7 +1,7 @@
 const pgp = require('pg-promise')();
-var db = pgp(process.env.getSoap);
-// Add queries here
-
+var db = pgp('postgres://ilwsduezrrtygv:af6d80076085e051f61b79eb8e6bafb6d4d9885c1e2a073a212cfe068a3283ac@ec2-184-72-247-70.compute-1.amazonaws.com:5432/ddjqb7dp6mhbsr?ssl=true');
+// process.env.getSoap
+//postgres://ilwsduezrrtygv:af6d80076085e051f61b79eb8e6bafb6d4d9885c1e2a073a212cfe068a3283ac@ec2-184-72-247-70.compute-1.amazonaws.com:5432/ddjqb7dp6mhbsr?ssl=true
 
 function getAllProducts(req, res) {
     db.any('select * from product_table')
